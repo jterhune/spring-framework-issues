@@ -41,11 +41,8 @@ public class SampleControllerTests {
 
     @Test
     public void testValidUri() throws Exception {
-
-        request.setRequestURI("/foo");
-        Object handler = handlerMapping.getHandler(request).getHandler();
-        ModelAndView modelAndView = adapter.handle(request, response, handler);
-        assertNotNull(modelAndView);
+        request.setRequestURI("/simple");
+        assertNotNull(handlerMapping.getHandler(request));
     }
 
     @Test
@@ -54,4 +51,15 @@ public class SampleControllerTests {
         assertNull(handlerMapping.getHandler(request));
     }
 
+    @Test
+    public void testWithoutSemicolon() throws Exception {
+        request.setRequestURI("/site/Home/123.p");
+        assertNotNull(handlerMapping.getHandler(request));
+    }
+
+    @Test
+    public void testWithSemicolon() throws Exception {
+        request.setRequestURI("/site/Home/123.p;tab=home");
+        assertNotNull(handlerMapping.getHandler(request));
+    }
 }
