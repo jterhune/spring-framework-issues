@@ -59,7 +59,7 @@ public class SampleControllerTests {
 
     @Test
     public void testWithSemicolon() throws Exception {
-        request.setRequestURI("/site/Home/123.p;tab=home");
+        request.setRequestURI("/site/Home/123.p;jsessionid=999");
         assertNotNull(handlerMapping.getHandler(request));
     }
 }
